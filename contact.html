@@ -1,0 +1,36 @@
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("B8YcDNJ6JHlypiJax");
+        })();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('.contact-form form');
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const name = form.querySelector('input[type="text"]').value;
+                const email = form.querySelector('input[type="email"]').value;
+                const message = form.querySelector('textarea').value;
+
+                if (!name || !email || !message) {
+                    alert('Please fill in all fields');
+                    return;
+                }
+
+                try {
+                    await emailjs.send("service_4fms63o", "template_inzsk38", {
+                        from_name: name,
+                        from_email: email,
+                        message: message
+                    });
+
+                    alert('Thank you for your message! We will get back to you soon.');
+                    form.reset();
+                } catch (error) {
+                    console.error('Error sending email:', error);
+                    alert('Sorry, there was an error sending your message. Please try again later.');
+                }
+            });
+        });
+    </script> 
