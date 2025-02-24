@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRM Nutrition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #34495e;
+            padding: 15px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1583337130417-3346a1be7dee');
+            height: 500px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .products {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .product-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .btn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>HRM Pet Nutrition</h1>
+        <p>Quality nutrition for your beloved pets</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <div>
+            <h2>Premium Pet Food for Happy Pets</h2>
+            <p>Nutritious, delicious, and made with love</p>
+        </div>
+    </div>
+
+    <section id="products" class="products">
+        <h2>Our Products</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <h3>Premium NZ Dog Food</h3>
+                <p>High-quality protein-rich formula for active dogs</p>
+                <button class="btn">Learn More</button>
+            </div>
+            <div class="product-card">
+                <h3>Cat Food Supreme</h3>
+                <p>Balanced nutrition for indoor and outdoor cats</p>
+                <button class="btn">Learn More</button>
+            </div>
+            <div class="product-card">
+                <h3>Puppy Formula</h3>
+                <p>Special blend for growing puppies</p>
+                <button class="btn">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="products">
+        <h2>About HRM Pet Food</h2>
+        <p>At HRM Pet Food Company, we believe that every pet deserves the best nutrition possible. Our products are made with carefully selected ingredients to ensure optimal health and happiness for your furry friends.</p>
+    </section>
+
+    <section id="contact" class="contact-form">
+        <h2>Contact Us</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 HRM Pet Food Company. All rights reserved.</p>
+    </footer>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+    document.addEventListener('DOMContentLoaded', function() {
+        // Form submission handler
+        const form = document.querySelector('.contact-form form');
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = form.querySelector('input[type="text"]').value;
+            const email = form.querySelector('input[type="email"]').value;
+            const message = form.querySelector('textarea').value;
+
+            // Basic form validation
+            if (!name || !email || !message) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            try {
+                // Send email using EmailJS service
+                await emailjs.send("default_service", "template_id", {
+                    to_email: "hchristinasmith@gmail.com",
+                    from_name: name,
+                    from_email: email,
+                    message: message
+                });
+
+                // Show success message
+                alert('Thank you for your message! We will get back to you soon.');
+                form.reset();
+            } catch (error) {
+                console.error('Error sending email:', error);
+                alert('Sorry, there was an error sending your message. Please try again later.');
+            }
+        });
+    });
+</script>
+<!-- Add EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+    // Initialize EmailJS with your user ID
+    (function() {
+        emailjs.init("YOUR_USER_ID"); // Replace with your actual EmailJS user ID
+    })();
+</script>
+
+        // Add smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    });
+</script>
+</html>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Form submission handler
+        const form = document.querySelector('.contact-form form');
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = form.querySelector('input[type="text"]').value;
+            const email = form.querySelector('input[type="email"]').value;
+            const message = form.querySelector('textarea').value;
+
+            // Basic form validation
+            if (!name || !email || !message) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            try {
+                // Send email using EmailJS service
+                await emailjs.send("default_service", "template_id", {
+                    to_email: "hchristinasmith@gmail.com",
+                    from_name: name,
+                    from_email: email,
+                    message: message
+                });
+
+                // Show success message
+                alert('Thank you for your message! We will get back to you soon.');
+                form.reset();
+            } catch (error) {
+                console.error('Error sending email:', error);
+                alert('Sorry, there was an error sending your message. Please try again later.');
+            }
+        });
+    });
+</script>
+<!-- Add EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+    // Initialize EmailJS with your user ID
+    (function() {
+        emailjs.init("YOUR_USER_ID"); // Replace with your actual EmailJS user ID
+    })();
+</script>
